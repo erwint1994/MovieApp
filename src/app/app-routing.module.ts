@@ -8,7 +8,6 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
-  // { path: 'addMovie', component: AddMovieComponent },
   { path: '', component: DashboardComponent }
 ];
 

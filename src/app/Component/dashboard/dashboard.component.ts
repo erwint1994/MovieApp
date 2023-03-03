@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit {
     const file = new File([dataString], 'data.txt', {
       type: 'text/plain;charset=utf-8',
     });
-
     // save file to the document folder
     FileSaver.saveAs(file);
   }

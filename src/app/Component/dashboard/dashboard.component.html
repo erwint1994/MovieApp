@@ -1,0 +1,26 @@
+<button mat-raised-button color="primary" (click)="addMovie()">
+  TOEVOEGEN
+</button>
+
+<button mat-raised-button color="primary" (click)="exportData()">EXPORT</button>
+
+<div *ngIf="this.movies?.length > 0">
+  <div *ngFor="let movie of this.movies">
+    <mat-card>
+      <mat-card-title
+        >{{ movie.releaseYear }} - {{ movie.title }}</mat-card-title
+      >
+      <mat-card-content>
+        {{ movie.description }}
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="editMovie(movie)">BEWERKEN</button>
+        <mat-label>GEDOWNLOAD</mat-label>
+        <mat-checkbox
+          [(ngModel)]="movie.downloaded"
+          (ngModelChange)="handleChange($event)"
+        ></mat-checkbox>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

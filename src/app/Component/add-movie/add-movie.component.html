@@ -1,0 +1,94 @@
+<button (click)="backBtn()">BACK</button>
+<mat-card>
+  <mat-card-title>Film toevoegen</mat-card-title>
+  <mat-card-content>
+    <form id="movieForm" [formGroup]="movieForm">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Titel"
+          required
+          formControlName="title"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="movieForm.controls.title.hasError('required')">
+          Titel <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-select
+          placeholder="Talen"
+          required
+          formControlName="languages"
+          multiple
+        >
+          <mat-option *ngFor="let lang of languages" [value]="lang">
+            {{ lang }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="movieForm.controls.languages.hasError('required')">
+          Talen <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Jaar dat film uitkwam"
+          required
+          type="number"
+          formControlName="releaseYear"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="movieForm.controls.releaseYear.hasError('required')">
+          Jaar <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Omschrijving"
+          required
+          formControlName="description"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="movieForm.controls.description.hasError('required')">
+          Omschrijving <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="downloaded">Gedowload?</mat-checkbox>
+      <mat-error *ngIf="movieForm.controls.downloaded.hasError('required')">
+        <strong>Maak een keuze</strong>
+      </mat-error>
+
+      <mat-form-field class="full-width">
+        <mat-select
+          placeholder="Category"
+          required
+          formControlName="categorys"
+          multiple
+        >
+          <mat-option *ngFor="let cat of categorys" [value]="cat">
+            {{ cat }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="movieForm.controls.categorys.hasError('required')">
+          Category <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        color="primary"
+        class="full-width"
+        [disabled]="!this.movieForm.valid"
+        mat-raised-button
+        (click)="onSubmit()"
+      >
+        OPSLAAN
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./add-movie.component.css'],
 })
 export class AddMovieComponent implements OnInit {
-  movie: Movie = new Movie(uuidv4(), '', ['EN'], 5000, 'img', '', false, []);
+  movie: Movie = new Movie();
   languages = ['NL', 'EN', 'DE', 'FR'];
   categorys = ['action', 'horror'];
 
@@ -34,13 +34,14 @@ export class AddMovieComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.movie.title = this.movieForm.controls.title.value ?? '';
-    this.movie.description = this.movieForm.controls.description.value ?? '';
+    this.movie.id = uuidv4();
+    this.movie.title = this.movieForm.controls.title.value;
+    this.movie.description = this.movieForm.controls.description.value;
     this.movie.releaseYear = this.movieForm.controls.releaseYear.value;
     this.movie.languages = this.movieForm.controls.languages.value;
     this.movie.downloaded = this.movieForm.controls.downloaded.value ?? false;
     this.movie.category = this.movieForm.controls.categorys.value;
-    console.log('movie: ', this.movie);
+    console.log('Add movie: ', this.movie);
     const res = this._movieService.addMovie(this.movie);
     if (res) this._snackbar.open(res);
     if (res === 'Toegevoegd') this.movieForm.reset();

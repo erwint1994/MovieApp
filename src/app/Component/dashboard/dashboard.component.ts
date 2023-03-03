@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies().subscribe((x) => {
       this.movies = x;
-      console.log('x: ', x);
     });
   }
 
@@ -47,7 +46,11 @@ export class DashboardComponent implements OnInit {
     this._router.navigate(['/editMovie', movie.id]);
   }
 
-  handleChange(value: boolean) {
-    console.log('change value: ', value);
+  handleChange(value: boolean, movie: Movie) {
+    movie.downloaded = value;
+    this._movieService.updateMovie(movie, this.movies);
+    this.getMovies().subscribe((x) => {
+      this.movies = x;
+    });
   }
 }

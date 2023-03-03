@@ -75,4 +75,11 @@ export class MovieService {
       FileSaver.saveAs(file);
     }
   }
+
+  deleteMovie(movies: Movie[], movie: Movie): string {
+    const i = movies.findIndex((x) => x.id === movie.id);
+    movies.splice(i, 1);
+    this.movieStore.dispatch(movieActions.addmovies({ movies: movies }));
+    return 'Verwijderd';
+  }
 }

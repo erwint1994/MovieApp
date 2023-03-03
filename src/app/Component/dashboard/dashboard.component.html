@@ -12,13 +12,25 @@
       >
       <mat-card-content>
         {{ movie.description }}
+
+        <div *ngIf="movie.category">
+          <div *ngFor="let cat of movie.category">
+            <button>{{ cat }}</button>
+          </div>
+        </div>
+
+        <div *ngIf="movie.languages">
+          <div *ngFor="let lang of movie.languages">
+            <button>{{ lang }}</button>
+          </div>
+        </div>
       </mat-card-content>
       <mat-card-actions>
         <button (click)="editMovie(movie)">BEWERKEN</button>
         <mat-label>GEDOWNLOAD</mat-label>
         <mat-checkbox
           [(ngModel)]="movie.downloaded"
-          (ngModelChange)="handleChange($event)"
+          (ngModelChange)="handleChange($event, movie)"
         ></mat-checkbox>
       </mat-card-actions>
     </mat-card>

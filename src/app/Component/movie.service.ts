@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Movie } from './Models/movie';
+import { Movie } from '../Models/movie';
 import { Action, Store } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
-import { MovieState, movieFeature } from './Component/movie.reducer';
-import { movieActions } from './Component/movie.actions';
+import { MovieState, movieFeature } from './movie.reducer';
+import { movieActions } from './movie.actions';
 import * as FileSaver from 'file-saver';
 
 @Injectable({
@@ -81,5 +81,13 @@ export class MovieService {
     movies.splice(i, 1);
     this.movieStore.dispatch(movieActions.addmovies({ movies: movies }));
     return 'Verwijderd';
+  }
+
+  getCategorys(): string[] {
+    return ['action', 'horror', 'disney'];
+  }
+
+  getLanguages(): string[] {
+    return ['NL', 'EN', 'DE', 'FR'];
   }
 }

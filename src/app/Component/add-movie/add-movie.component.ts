@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Movie } from '../../Models/movie';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MovieService } from 'src/app/movie.service';
+import { MovieService } from 'src/app/Component/movie.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
@@ -16,7 +16,7 @@ import { Subject, Observable } from 'rxjs';
 export class AddMovieComponent implements OnInit {
   movie: Movie = new Movie();
   languages = ['NL', 'EN', 'DE', 'FR'];
-  categorys = ['action', 'horror'];
+  categorys = [];
 
   //takingPhoto: boolean;
   //takePhotoObservable: EventEmitter<void> = new EventEmitter();
@@ -41,7 +41,10 @@ export class AddMovieComponent implements OnInit {
     private _router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categorys = this._movieService.getCategorys();
+    this.languages = this._movieService.getLanguages();
+  }
 
   onSubmit(): void {
     this.movie.id = uuidv4();

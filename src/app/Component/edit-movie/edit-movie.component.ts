@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/Models/movie';
-import { MovieService } from 'src/app/movie.service';
+import { MovieService } from 'src/app/Component/movie.service';
 
 @Component({
   selector: 'app-edit-movie',
@@ -15,8 +15,8 @@ export class EditMovieComponent implements OnInit {
   movieId = null;
   movie: Movie;
   movies: Movie[] = [];
-  languages = ['NL', 'EN', 'DE', 'FR'];
-  categorys = ['action', 'horror'];
+  languages = [];
+  categorys = [];
 
   movieForm = this._fb.group({
     title: [undefined as string | undefined, Validators.required],
@@ -40,6 +40,8 @@ export class EditMovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.categorys = this._movieService.getCategorys();
+    this.languages = this._movieService.getLanguages();
     this.getMovies().subscribe((movies) => {
       this.movies = movies;
       console.log('movies from storage: ', movies);
@@ -60,7 +62,7 @@ export class EditMovieComponent implements OnInit {
         this.movieForm.controls.downloaded.setValue(this.movie.downloaded);
         this.movieForm.controls.categorys.setValue(this.movie.category);
       } else {
-        console.log('NO MOVIES IN STORAGE')
+        console.log('NO MOVIES IN STORAGE');
       }
     });
   }

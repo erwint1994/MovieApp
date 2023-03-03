@@ -17,13 +17,15 @@
 <div *ngIf="this.movies?.length > 0">
   <div *ngFor="let movie of this.filteredMovies">
     <mat-card class="card">
-      <mat-card-title
-        >{{ movie.releaseYear }} - {{ movie.title }}</mat-card-title
-      >
-      <mat-card-content>
-        <img *ngIf="movie.image" src=""/>
-        {{ movie.description }}
+      <mat-card-header>
+        <mat-card-title>
+          {{ movie.releaseYear }} - {{ movie.title }}
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image *ngIf="movie.image" src="" alt="Foto" />
 
+      <mat-card-content>
+        <p>{{ movie.description }}</p>
         <div *ngIf="movie.category">
           <div *ngFor="let cat of movie.category">
             <button>{{ cat }}</button>

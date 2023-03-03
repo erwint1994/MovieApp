@@ -90,5 +90,35 @@
         OPSLAAN
       </button>
     </form>
+
+    <!-- <div>
+      <span *ngIf="takingPhoto; then webcam; else photoButton"></span>
+      <ng-template #webcam>
+        <webcam
+          [trigger]="takePhotoObservable"
+          [width]="photoBoxWidth"
+          (imageCapture)="onTakePhoto($event)"
+        ></webcam>
+        <button
+          (click)="takePhoto()"
+          color="primary"
+          class="take-photo-button"
+          mat-raised-button
+        >
+          <mat-icon>photo_camera</mat-icon>FOTO MAKEN
+        </button>
+      </ng-template>
+      <ng-template #photoButton>
+        <button
+          [disabled]="!newRetourForm.valid"
+          (click)="takingPhoto = true"
+          color="primary"
+          mat-raised-button
+          class="photo-button"
+        >
+          <mat-icon>add_a_photo</mat-icon>FOTO MAKEN
+        </button>
+      </ng-template>
+    </div> -->
   </mat-card-content>
 </mat-card>

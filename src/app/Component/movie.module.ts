@@ -7,6 +7,7 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 import { MaterialModule } from '../material.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
+import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [AddMovieComponent, DashboardComponent, EditMovieComponent],
@@ -15,7 +16,8 @@ import { EditMovieComponent } from './edit-movie/edit-movie.component';
     ReactiveFormsModule,
     RouterModule.forChild(movieRoutes),
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    WebcamModule
   ],
 })
 export class MovieModule {}

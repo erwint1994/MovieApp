@@ -13,12 +13,15 @@ import * as FileSaver from 'file-saver';
 export class DashboardComponent implements OnInit {
   movies: Movie[] = [];
   rdbs = [true, false];
+  filteredMovies: Movie[] = [];
 
   constructor(private _movieService: MovieService, private _router: Router) {}
 
   ngOnInit(): void {
     this.getMovies().subscribe((x) => {
+      x.map(y => y.image === "data:image/png;base64," + y.image);
       this.movies = x;
+      this.filteredMovies = x;
     });
   }
 
@@ -51,5 +54,11 @@ export class DashboardComponent implements OnInit {
     this.getMovies().subscribe((x) => {
       this.movies = x;
     });
+  }
+
+  applyFilter(event: KeyboardEvent): void {
+    this.filteredMovies = this.movies.filter(movie =>
+      movie.title.includes((event.target as HTMLInputElement).value.trim().toLowerCase())
+    );
   }
 }

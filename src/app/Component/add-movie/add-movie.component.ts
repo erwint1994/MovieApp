@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Movie } from '../../Models/movie';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MovieService } from 'src/app/movie.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
+import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-movie',
@@ -15,6 +17,9 @@ export class AddMovieComponent implements OnInit {
   movie: Movie = new Movie();
   languages = ['NL', 'EN', 'DE', 'FR'];
   categorys = ['action', 'horror'];
+
+  //takingPhoto: boolean;
+  //takePhotoObservable: EventEmitter<void> = new EventEmitter();
 
   movieForm = this._fb.group({
     title: [undefined as string | undefined, Validators.required],
@@ -29,7 +34,12 @@ export class AddMovieComponent implements OnInit {
     ],
   });
 
-  constructor(private _fb: FormBuilder, private _movieService: MovieService, private _snackbar: MatSnackBar, private _router: Router) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _movieService: MovieService,
+    private _snackbar: MatSnackBar,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -50,4 +60,12 @@ export class AddMovieComponent implements OnInit {
   backBtn(): void {
     this._router.navigate(['/dashboard']);
   }
+
+  // onTakePhoto(photo: WebcamImage): void {
+  //   this.movie.image = photo.imageAsBase64;
+  // }
+
+  // takePhoto(): void {
+  //   this.takePhotoObservable.emit();
+  // }
 }

@@ -1,7 +1,7 @@
 {
   "name": "movie-app",
   "version": "0.0.0",
-  "homepage" : "https://erwint1994.github.io/MovieApp",
+  "homepage": "https://erwint1994.github.io/MovieApp",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,6 +26,7 @@
     "@ngrx/store-devtools": "^15.3.0",
     "file-saver": "^2.0.5",
     "ngrx-store-localstorage": "^15.0.0",
+    "ngx-webcam": "^0.4.1",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "^0.12.0"

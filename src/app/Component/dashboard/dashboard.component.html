@@ -4,13 +4,24 @@
 
 <button mat-raised-button color="primary" (click)="exportData()">EXPORT</button>
 
+<mat-form-field>
+  <mat-icon matPrefix>search</mat-icon>
+  <input
+    #searchInput
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Order nummer"
+  />
+</mat-form-field>
+
 <div *ngIf="this.movies?.length > 0">
-  <div *ngFor="let movie of this.movies">
-    <mat-card>
+  <div *ngFor="let movie of this.filteredMovies">
+    <mat-card class="card">
       <mat-card-title
         >{{ movie.releaseYear }} - {{ movie.title }}</mat-card-title
       >
       <mat-card-content>
+        <img *ngIf="movie.image" src=""/>
         {{ movie.description }}
 
         <div *ngIf="movie.category">

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Movie } from '../../Models/movie';
 import { Router } from '@angular/router';
 import * as FileSaver from 'file-saver';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +16,11 @@ export class DashboardComponent implements OnInit {
   rdbs = [true, false];
   filteredMovies: Movie[] = [];
 
-  constructor(private _movieService: MovieService, private _router: Router) {}
+  constructor(private _movieService: MovieService, private _router: Router, private _snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getMovies().subscribe((x) => {
-      x.map(y => y.image === "data:image/png;base64," + y.image);
+      x.map((y) => y.image === 'data:image/png;base64,' + y.image);
       this.movies = x;
       this.filteredMovies = x;
     });
@@ -57,8 +58,18 @@ export class DashboardComponent implements OnInit {
   }
 
   applyFilter(event: KeyboardEvent): void {
-    this.filteredMovies = this.movies.filter(movie =>
-      movie.title.includes((event.target as HTMLInputElement).value.trim().toLowerCase())
+    this.filteredMovies = this.movies.filter((movie) =>
+      movie.title.includes(
+        (event.target as HTMLInputElement).value.trim().toLowerCase()
+      )
     );
+  }
+
+  serieInfo(movie: Movie): void {
+    this._router.navigate(['/serieInfo', movie.id]);
+  }
+
+  importData(): void {
+    this._snackbar.open('Nog niet beschikbaar!');
   }
 }

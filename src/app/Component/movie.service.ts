@@ -90,4 +90,8 @@ export class MovieService {
   getLanguages(): string[] {
     return ['NL', 'EN', 'DE', 'FR'];
   }
+
+  getTypes(): string[] {
+    return ['MOVIE', 'SERIE'];
+  }
 }

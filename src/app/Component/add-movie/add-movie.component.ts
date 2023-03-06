@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { Movie } from '../../Models/movie';
+import { Movie, Season } from '../../Models/movie';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MovieService } from 'src/app/Component/movie.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,8 +15,9 @@ import { Subject, Observable } from 'rxjs';
 })
 export class AddMovieComponent implements OnInit {
   movie: Movie = new Movie();
-  languages = ['NL', 'EN', 'DE', 'FR'];
+  languages = [];
   categorys = [];
+  types = [];
 
   //takingPhoto: boolean;
   //takePhotoObservable: EventEmitter<void> = new EventEmitter();
@@ -32,6 +33,7 @@ export class AddMovieComponent implements OnInit {
       undefined as string[] | undefined,
       [Validators.required, Validators.required],
     ],
+    type: [undefined as string | undefined]
   });
 
   constructor(
@@ -44,6 +46,7 @@ export class AddMovieComponent implements OnInit {
   ngOnInit(): void {
     this.categorys = this._movieService.getCategorys();
     this.languages = this._movieService.getLanguages();
+    this.types = this._movieService.getTypes();
   }
 
   onSubmit(): void {
@@ -54,6 +57,7 @@ export class AddMovieComponent implements OnInit {
     this.movie.languages = this.movieForm.controls.languages.value;
     this.movie.downloaded = this.movieForm.controls.downloaded.value ?? false;
     this.movie.category = this.movieForm.controls.categorys.value;
+    this.movie.type = this.movieForm.controls.type.value;
     console.log('Add movie: ', this.movie);
     const res = this._movieService.addMovie(this.movie);
     if (res) this._snackbar.open(res);

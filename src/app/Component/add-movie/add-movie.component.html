@@ -80,6 +80,22 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-form-field class="full-width">
+        <mat-select
+          placeholder="Type"
+          required
+          formControlName="type"
+          multiple
+        >
+          <mat-option *ngFor="let type of types" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="movieForm.controls.type.hasError('required')">
+          Type <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
       <button
         color="primary"
         class="full-width"

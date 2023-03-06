@@ -1,8 +1,25 @@
+<div class="header">
+  <input
+    type="radio"
+    name="choice"
+    value="A"
+    onchange="checkRadio(this);"
+  />MOVIE
+  <input
+    type="radio"
+    name="choice"
+    value="B"
+    onchange="checkRadio(this);"
+  />SERIE
+</div>
+
 <button mat-raised-button color="primary" (click)="addMovie()">
   TOEVOEGEN
 </button>
 
 <button mat-raised-button color="primary" (click)="exportData()">EXPORT</button>
+
+<button mat-raised-button color="primary" (click)="importData()">IMPORT</button>
 
 <mat-form-field>
   <mat-icon matPrefix>search</mat-icon>
@@ -10,7 +27,7 @@
     #searchInput
     matInput
     (keyup)="applyFilter($event)"
-    placeholder="Order nummer"
+    placeholder="Zoeken op titel"
   />
 </mat-form-field>
 
@@ -21,6 +38,7 @@
         <mat-card-title>
           {{ movie.releaseYear }} - {{ movie.title }}
         </mat-card-title>
+        <mat-card-subtitle> {{ movie.type }}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image *ngIf="movie.image" src="" alt="Foto" />
 
@@ -45,6 +63,10 @@
           [(ngModel)]="movie.downloaded"
           (ngModelChange)="handleChange($event, movie)"
         ></mat-checkbox>
+
+        <button *ngIf="movie.type == 'SERIE'" (click)="serieInfo(movie)">
+          SEIZOENEN
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

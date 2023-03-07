@@ -9,13 +9,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { WebcamModule } from 'ngx-webcam';
 import { SerieInfoComponent } from './serie-info/serie-info.component';
+import { AddSeasonComponent } from './add-season/add-season.component';
 
 @NgModule({
   declarations: [
     AddMovieComponent,
     DashboardComponent,
     EditMovieComponent,
-    SerieInfoComponent
+    SerieInfoComponent,
+    AddSeasonComponent
   ],
   imports: [
     CommonModule,

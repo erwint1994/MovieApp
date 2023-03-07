@@ -1,0 +1,43 @@
+<button (click)="backBtn()">Terug</button>
+<mat-card>
+  <mat-card-title>Seizoen toevoegen</mat-card-title>
+  <mat-card-content>
+    <form id="seasonForm" [formGroup]="seasonForm">
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Titel"
+          required
+          formControlName="title"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="seasonForm.controls.title.hasError('required')">
+          Titel <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          placeholder="Omschrijving"
+          required
+          formControlName="description"
+          autocomplete="on"
+        />
+        <mat-error *ngIf="seasonForm.controls.description.hasError('required')">
+          Omschrijving <strong>vereist</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        color="primary"
+        class="full-width"
+        [disabled]="!this.seasonForm.valid"
+        mat-raised-button
+        (click)="onSubmit()"
+      >
+        OPSLAAN
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

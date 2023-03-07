@@ -16,7 +16,11 @@ export class DashboardComponent implements OnInit {
   rdbs = [true, false];
   filteredMovies: Movie[] = [];
 
-  constructor(private _movieService: MovieService, private _router: Router, private _snackbar: MatSnackBar) {}
+  constructor(
+    private _movieService: MovieService,
+    private _router: Router,
+    private _snackbar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getMovies().subscribe((x) => {
@@ -71,5 +75,20 @@ export class DashboardComponent implements OnInit {
 
   importData(): void {
     this._snackbar.open('Nog niet beschikbaar!');
+    // Create a new FileReader
+    // let reader = new FileReader();
+
+    // // Get a reference to the file from the download folder
+    // let file = document.getElementById('file-input').files[0];
+
+    // // Read the file
+    // reader.readAsDataURL(file);
+
+    // // Listen for when the file is done loading
+    // reader.onload = function () {
+    //   // Do something with the file data here
+    //   let fileData = reader.result;
+    //   // ...
+    // };
   }
 }

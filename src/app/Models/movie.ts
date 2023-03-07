@@ -13,10 +13,9 @@ export class Movie {
 
 export class Season {
   id: string;
-  season: string;
+  seasonId: string;
   title: string;
   description: string;
-  complete: boolean;
   episodes: Episode[];
 }
 

@@ -1,1 +1,30 @@
-<p>serie-info works!</p>
+<button mat-raised-button color="primary" (click)="backBtn()">TERUG</button>
+<button mat-raised-button color="primary" (click)="addSeason()">
+  TOEVOEGEN
+</button>
+<mat-card>
+  <mat-card-title
+    >{{ this.serie.releaseYear }} - {{ this.serie.title }}</mat-card-title
+  >
+</mat-card>
+
+<div *ngFor="let season of this.serie.seasons">
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ season.title }} - {{season.description ?? ''}}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div *ngFor="let episode of season.episodes">
+        {{ episode.description }}
+        <mat-checkbox
+          [(ngModel)]="movie.downloaded"
+          (ngModelChange)="handleChange($event, episode, season)"
+        ></mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

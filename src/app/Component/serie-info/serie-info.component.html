@@ -1,7 +1,16 @@
 <button mat-raised-button color="primary" (click)="backBtn()">TERUG</button>
 <button mat-raised-button color="primary" (click)="addSeason()">
-  TOEVOEGEN
+  Add season
 </button>
+<button mat-raised-button color="primary" (click)="addEpisode()">
+  Add episode
+</button>
+<button mat-raised-button color="primary" (click)="editSeason()">
+    Edit season 
+  </button>
+  <button mat-raised-button color="primary" (click)="editEpisode()">
+    Edit episode
+  </button>
 <mat-card>
   <mat-card-title
     >{{ this.serie.releaseYear }} - {{ this.serie.title }}</mat-card-title
@@ -15,7 +24,9 @@
       (closed)="panelOpenState = false"
     >
       <mat-expansion-panel-header>
-        <mat-panel-title> {{ season.title }} - {{season.description ?? ''}}</mat-panel-title>
+        <mat-panel-title>
+          {{ season.title }} - {{ season.description ?? "" }}</mat-panel-title
+        >
       </mat-expansion-panel-header>
 
       <div *ngFor="let episode of season.episodes">

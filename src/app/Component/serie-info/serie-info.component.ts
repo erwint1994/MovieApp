@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Episode, Movie, Season } from 'src/app/Models/movie';
 import { MovieService } from '../movie.service';
 
@@ -44,5 +43,17 @@ export class SerieInfoComponent {
     episode.downloaded = value;
     this._movieService.updateEpisode(episode, this.serie.id, season.id);
     this.serie = this.getSeasonWithEpisodes();
+  }
+
+  addEpisode(): void {
+    //
+  }
+
+  editSeason(): void {
+    //
+  }
+
+  editEpisode(): void {
+    //
   }
 }

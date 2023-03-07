@@ -5,13 +5,12 @@ import { Observable, map } from 'rxjs';
 import { MovieState, movieFeature } from './movie.reducer';
 import { movieActions } from './movie.actions';
 import * as FileSaver from 'file-saver';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MovieService {
-  constructor(private movieStore: Store<MovieState>, private _router: Router) {}
+  constructor(private movieStore: Store<MovieState>) {}
 
   dispatch(action: Action) {
     this.movieStore.dispatch(action);
@@ -22,6 +21,29 @@ export class MovieService {
   }
 
   addSeason(serie: Movie, season: Season, movies: Movie[]): string {
+    // Check if movie already exists in storage
+    movies.map((m) => {
+      if (m.id == serie.id) {
+        if (m.seasons != null) {
+          // Add to list
+          m.seasons.push(season);
+        } else {
+          // This is the first season
+          m.seasons = [];
+          m.seasons.push(season);
+        }
+      }
+      return;
+    });
+    const updatedMovies = movies;
+    // Clear localstorage
+    this.movieStore.dispatch(movieActions.clear());
+    // Seed storage
+    this.movieStore.dispatch(movieActions.addmovies({ movies: updatedMovies }));
+    return 'Toegevoegd';
+  }
+
+  editSeason(serie: Movie, season: Season, movies: Movie[]): string {
     // Check if movie already exists in storage
     movies.map((m) => {
       if (m.id == serie.id) {

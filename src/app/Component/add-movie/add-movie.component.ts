@@ -11,7 +11,7 @@ import { Subject, Observable } from 'rxjs';
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.css'],
+  styleUrls: ['./add-movie.component.scss'],
 })
 export class AddMovieComponent implements OnInit {
   movie: Movie = new Movie();

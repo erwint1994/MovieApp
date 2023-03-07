@@ -1,0 +1,29 @@
+.view-container {
+    background-color: aquamarine;
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        form {
+            width: 80%;
+            mat-form-field {
+                width: 100%;
+                padding-bottom: 0.4em;
+            }
+            mat-checkbox {
+                margin: 1em 0;
+                float: left;
+            }
+        }
+    }
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}

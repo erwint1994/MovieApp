@@ -50,7 +50,7 @@ export class SerieInfoComponent {
   }
 
   editSeason(): void {
-    //
+    this._router.navigate(['/editSeason', this.serie.id]);
   }
 
   editEpisode(): void {

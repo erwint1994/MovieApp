@@ -49,6 +49,6 @@ export class AddSeasonComponent {
   }
 
   backBtn(): void {
-    this._router.navigate(['/dashboard']);
+    this._router.navigate(['/serieInfo', this.serieId]);
   }
 }

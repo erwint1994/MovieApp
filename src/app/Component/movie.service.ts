@@ -197,6 +197,10 @@ export class MovieService {
   }
 
   getTypes(): string[] {
-    return ['MOVIE', 'SERIE'];
+    return ['FILM', 'SERIE'];
+  }
+
+  getFilterOptions(): string[] {
+    return ['SERIE', 'FILM'];
   }
 }

@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 const MODULES = [
   MatAutocompleteModule,
@@ -49,7 +50,7 @@ const MODULES = [
   MatSortModule,
   MatButtonToggleModule,
   MatExpansionModule,
-  
+  MatChipsModule
 ];
 
 @NgModule({

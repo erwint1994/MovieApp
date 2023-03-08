@@ -1,73 +1,77 @@
-<div class="header">
-  <input
-    type="radio"
-    name="choice"
-    value="A"
-    onchange="checkRadio(this);"
-  />MOVIE
-  <input
-    type="radio"
-    name="choice"
-    value="B"
-    onchange="checkRadio(this);"
-  />SERIE
-</div>
+<div class="view-container">
+  <button mat-raised-button color="primary" (click)="addMovie()">
+    Toevoegen
+  </button>
 
-<button mat-raised-button color="primary" (click)="addMovie()">
-  TOEVOEGEN
-</button>
+  <button mat-raised-button color="primary" (click)="exportData()">
+    Export
+  </button>
 
-<button mat-raised-button color="primary" (click)="exportData()">EXPORT</button>
+  <mat-form-field>
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      #searchInput
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Zoeken op titel"
+    />
+  </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="importData()">IMPORT</button>
+  <form id="filterForm" [formGroup]="filterForm">
+    <mat-form-field>
+      <mat-select
+        placeholder="Filter"
+        required
+        formControlName="filterOptions"
+        multiple
+      >
+        <mat-option *ngFor="let filter of filterOptions" [value]="filter">
+          {{ filter }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 
-<mat-form-field>
-  <mat-icon matPrefix>search</mat-icon>
-  <input
-    #searchInput
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Zoeken op titel"
-  />
-</mat-form-field>
+  <div *ngIf="this.movies?.length > 0">
+    <div *ngFor="let movie of this.filteredMovies">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ movie.releaseYear }} - {{ movie.title }}
+          </mat-card-title>
+          <mat-card-subtitle> {{ movie.type }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image *ngIf="movie.image" src="" alt="Foto" />
 
-<div *ngIf="this.movies?.length > 0">
-  <div *ngFor="let movie of this.filteredMovies">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>
-          {{ movie.releaseYear }} - {{ movie.title }}
-        </mat-card-title>
-        <mat-card-subtitle> {{ movie.type }}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image *ngIf="movie.image" src="" alt="Foto" />
-
-      <mat-card-content>
-        <p>{{ movie.description }}</p>
-        <div *ngIf="movie.category">
-          <div *ngFor="let cat of movie.category">
-            <button>{{ cat }}</button>
+        <mat-card-content>
+          <p>{{ movie.description }}</p>
+          <div *ngIf="movie.category">
+            <mat-chip-listbox>
+              <mat-chip-option *ngFor="let cat of movie.category">{{
+                cat
+              }}</mat-chip-option>
+            </mat-chip-listbox>
           </div>
-        </div>
 
-        <div *ngIf="movie.languages">
-          <div *ngFor="let lang of movie.languages">
-            <button>{{ lang }}</button>
+          <div *ngIf="movie.languages">
+            <mat-chip-listbox>
+              <mat-chip-option *ngFor="let lang of movie.languages">{{
+                lang
+              }}</mat-chip-option>
+            </mat-chip-listbox>
           </div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="editMovie(movie)">BEWERKEN</button>
-        <mat-label>GEDOWNLOAD</mat-label>
-        <mat-checkbox
-          [(ngModel)]="movie.downloaded"
-          (ngModelChange)="handleChange($event, movie)"
-        ></mat-checkbox>
+          <mat-icon (click)="editMovie(movie)">edit</mat-icon>
+          <mat-label class="download">Gedownload?</mat-label>
+          <mat-checkbox
+            [(ngModel)]="movie.downloaded"
+            (ngModelChange)="handleChange($event, movie)"
+          ></mat-checkbox>
 
-        <button *ngIf="movie.type == 'SERIE'" (click)="serieInfo(movie)">
-          SEIZOENEN
-        </button>
-      </mat-card-actions>
-    </mat-card>
+          <button *ngIf="movie.type == 'SERIE'" (click)="serieInfo(movie)">
+            SEIZOENEN
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

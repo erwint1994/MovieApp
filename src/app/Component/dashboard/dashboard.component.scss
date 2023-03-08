@@ -1,0 +1,47 @@
+.card {
+  border: 1px solid black;
+}
+
+.header {
+  width: 100%;
+  height: 25px;
+  background-color: red;
+}
+
+button {
+  width: 31%;
+  margin: 1%;
+  border-radius: 5px;
+}
+
+mat-form-field {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 2%;
+  width: 94%;
+}
+
+mat-card {
+  width: 94%;
+  margin-left: 3%;
+  margin-right: 3%;
+  mat-card-header {
+    padding-top: 0px;
+  }
+  mat-card-content {
+    padding-bottom: 0px !important;
+  }
+}
+
+.download {
+  margin-left: 55%;
+}
+
+mat-mdc-form-field {
+  flex-direction: unset !important;
+}
+
+.view-container {
+  background-color: skyblue;
+  height: 100%;
+}

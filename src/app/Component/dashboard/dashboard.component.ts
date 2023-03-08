@@ -1,25 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { Observable } from 'rxjs';
-import { Movie } from '../../Models/movie';
+import { Movie, Season } from '../../Models/movie';
 import { Router } from '@angular/router';
 import * as FileSaver from 'file-saver';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   movies: Movie[] = [];
   rdbs = [true, false];
   filteredMovies: Movie[] = [];
+  filterOptions: string[] = [];
+
+  filterForm = this._fb.group({
+    filterOptions: [undefined as string[] | [], Validators.required],
+  });
 
   constructor(
     private _movieService: MovieService,
     private _router: Router,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private _fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +35,7 @@ export class DashboardComponent implements OnInit {
       this.movies = x;
       this.filteredMovies = x;
     });
+    this.filterOptions = this._movieService.getFilterOptions();
   }
 
   getMovies(): Observable<Movie[]> {
@@ -71,24 +79,5 @@ export class DashboardComponent implements OnInit {
 
   serieInfo(movie: Movie): void {
     this._router.navigate(['/serieInfo', movie.id]);
-  }
-
-  importData(): void {
-    this._snackbar.open('Nog niet beschikbaar!');
-    // Create a new FileReader
-    // let reader = new FileReader();
-
-    // // Get a reference to the file from the download folder
-    // let file = document.getElementById('file-input').files[0];
-
-    // // Read the file
-    // reader.readAsDataURL(file);
-
-    // // Listen for when the file is done loading
-    // reader.onload = function () {
-    //   // Do something with the file data here
-    //   let fileData = reader.result;
-    //   // ...
-    // };
   }
 }

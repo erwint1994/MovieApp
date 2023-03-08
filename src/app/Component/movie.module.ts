@@ -11,6 +11,7 @@ import { WebcamModule } from 'ngx-webcam';
 import { SerieInfoComponent } from './serie-info/serie-info.component';
 import { AddSeasonComponent } from './add-season/add-season.component';
 import { EditSeasonComponent } from './edit-season/edit-season.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditSeasonComponent } from './edit-season/edit-season.component';
     EditMovieComponent,
     SerieInfoComponent,
     AddSeasonComponent,
-    EditSeasonComponent
+    EditSeasonComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

@@ -1,29 +1,33 @@
 .view-container {
-    background-color: aquamarine;
+  background-color: skyblue;
+  height: 100%;
+  mat-card {
+    background-color: skyblue;
     mat-card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        form {
-            width: 80%;
-            mat-form-field {
-                width: 100%;
-                padding-bottom: 0.4em;
-            }
-            mat-checkbox {
-                margin: 1em 0;
-                float: left;
-            }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0px !important;
+      form {
+        width: 80%;
+        mat-form-field {
+          width: 100%;
         }
+        mat-checkbox {
+          float: left;
+        }
+      }
     }
+  }
 }
 
 mat-card-title {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    width: 100%;
+  width: 31%;
+  margin: 1%;
+  border-radius: 5px;
 }

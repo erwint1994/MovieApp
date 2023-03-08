@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/Models/movie';
 import { MovieService } from 'src/app/Component/movie.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-edit-movie',
@@ -36,7 +38,8 @@ export class EditMovieComponent implements OnInit {
     private _movieService: MovieService,
     private _fb: FormBuilder,
     private _router: Router,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -88,8 +91,14 @@ export class EditMovieComponent implements OnInit {
   }
 
   deleteBtn(): void {
-    const res = this._movieService.deleteMovie(this.movies, this.movie);
-    if (res) this._snackbar.open(res);
-    this._router.navigate(['/dashboard']);
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe((confirm) => {
+      if (confirm) {
+        const res = this._movieService.deleteMovie(this.movies, this.movie);
+        if (res) this._snackbar.open(res);
+        this._router.navigate(['/dashboard']);
+      }
+    });
   }
 }

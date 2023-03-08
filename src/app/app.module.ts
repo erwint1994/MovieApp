@@ -16,6 +16,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MovieModule } from './Component/movie.module';
+import { DialogModule } from '@angular/cdk/dialog';
 
 const reducers: ActionReducerMap<any> = {
   appState: appFeature.reducer,
@@ -50,7 +51,8 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
         strictStateSerializability: false,
       },
     }),
-    MovieModule
+    MovieModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
